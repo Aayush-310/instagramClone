@@ -1,0 +1,41 @@
+<div class="row">
+  <div class = "col-6" style="margin:auto">
+
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+<%if user_signed_in?%>
+<%if current_user.admin?%>
+Your are an admin<%end%>
+<%if current_user.id ==@post.user.id%>
+<div class="text-center" style="padding:10px" >
+
+  <div>
+  <%= link_to "Edit this post", edit_post_path(@post) %> |  <%= link_to "Back to posts", posts_path %>
+</div>
+
+<div style = "padding:10px">
+  <%= button_to "Destroy this post", @post, method: :delete %>
+</div>
+<%=render "comments/form"%>  
+<% @post.comments.each do |comment|%>
+<%= comment.text%>
+<br>
+<%end%>
+</div>
+<%end%>
+<%else%>
+<%=render "comments/form"%>  
+
+<% @post.comments.each do |comment|%>
+<%= comment.text%>
+<br>
+<%end%>
+
+<div class = "text-center" style = "margin-bottom:5px">
+<%= link_to "Back to posts", posts_path %>
+</div>
+<%end%>
+
+</div>
+</div>

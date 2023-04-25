@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-6 mx-auto">
+    <div id="<%= dom_id post %>" class="post-container text-center" style="margin-auto ">
+      <p>
+        <%= post.title %>
+      </p>
+
+      <% post.images.each do |image| %>
+        <%= image_tag(image, style: "object-fit:cover; width:100%; height:auto") %>
+      <% end %>
+      
+      <div style="text-align:left">
+        <% if current_user.present? %>
+          <div style="display:inline-block;">
+            <% like = current_user.likes.find_by(post: post) %>
+            <% if like.nil? %>
+              <%= button_to "🤍", likes_path, params: { like: { post_id: post.id } }, method: :post %>
+            <% else %>
+              <%= button_to "❤️", like_path(like), method: :delete %>
+            <% end %>
+          </div>
+          <p style="display:inline-block;"><%= post.likes.count %> Likes</p>
+        <% else %>
+          <p><%= post.likes.count %> Likes</p>
+        <% end %>
+      </div>
+
+      <p>
+        <%= post.description %>
+      </p>
+
+      <p style="font-size:9px">
+        <%= post.keywords %>
+      </p>
+
+      <p>
+        <%= link_to post.user.username, post.user %>
+      </p>
+
+    </div>
+  </div>
+</div>

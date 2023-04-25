@@ -1,0 +1,42 @@
+<div  class= "row" style = "left-margin:10px">
+<div class = "col-12 text-center" style = "padding:20px;background-color:#f2f2f2;">
+<h1><%= @user.username%></h1>
+<h1><%= @user.email%></h1>
+<h1><%= @user.bio%></h1>
+<div class = "row" ><% if user_signed_in? %>
+<% current_user.follow_requests.each do |request| %>
+    <%= request.followerable.email %> Wants to follow you 
+    <%= button_to "Accept", accept_path(request.followerable) %>
+    <%= button_to "Decline", decline_path(request.followerable) %>
+  <% end %>
+  <div class = "col-6 text-center">Followers
+  <% current_user.followers.each do |follower| %>
+    <p> <b> <%= link_to follower.username, follower %> </b> </p>
+  <% end %>
+  </div>
+  <div class = "col-6 text-center">
+  Following
+  <% current_user.following.each do |following| %>
+    <p> <%= link_to following.username, following %> </p>
+  <% end %>
+  </div>
+<%end%>
+    
+
+    </div>
+</div>
+</div>
+
+<% if @user.avatar.attached?%>
+<% image_tag @user.avatar,style:"width:50px;height:50px;"%>
+<%end%>
+
+<%  if current_user != @user%>
+<% if current_user.following?(@user)%>
+<%= button_to "Unfollow",unfollow_path(@user)%>
+<%elsif current_user.sent_follow_request_to?(@user)%>
+<%= button_to "Cancle follow request",cancel_path(@user)%>
+<%else%>
+<%= button_to "follow", follow_path(@user)%>
+<%end%>
+<%end%>

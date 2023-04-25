@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-12 text-center" style="padding: 20px; background-color: #f2f2f2;">
+    <div class="row">
+      <div class="col-4">
+        <% if user.avatar.attached? %>
+          <%= image_tag user.avatar, style:"width: 100px; height: 100px; border-radius: 50%;" %>
+        <% end %>
+      </div>
+      <div class="col-8 text-left">
+        <h4><%= link_to user.username, user %></h4>
+        <h6><%= link_to user.email, user %></h6>
+        <br>
+        <div class="row">
+          <div class="col-6">
+            <h6><%= user.followers.count %> Followers</h6>
+          </div>
+          <div class="col-6">
+            <h6><%= user.following.count %> Following</h6>
+          </div>
+        </div>
+        <% if user_signed_in? %>
+          <% if current_user.following?(user) %>
+            <%= button_to "Unfollow", unfollow_path(user), class: "btn btn-danger" %>
+          <% elsif current_user.sent_follow_request_to?(user) %>
+            <%= button_to "Cancel follow request", cancel_path(user), class: "btn btn-secondary" %>
+          <% else %>
+            <%= button_to "Follow", follow_path(user), class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

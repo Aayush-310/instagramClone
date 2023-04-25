@@ -1,0 +1,8 @@
+<div class="text-center">
+  <% @users.each do |user| %>
+    <%= render user %>
+  <% end %>
+  <% if !@users[0].present?%>
+<h2 style="padding:30px">No users found</h2>
+<% end %>
+</div>

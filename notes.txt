@@ -1,0 +1,47 @@
+application creation
+server check
+rails g scaffold Posts title:string descriptionL:string keywords:string
+rails db:migrate
+changing root directoyr
+routes.rb   root "posts#index" "controller#action"
+addition of data to the database using the webbrwoser
+
+application.html.erb file renders everything int he appliacation(changse on every page)
+cdn for bootstrap and react addition    
+styling of navbar and footer and post addition page
+user authentiaction addition and input validation
+rails active_storage:install
+rails db:migrate
+
+creating a static page
+    making a home controller
+
+devise addition 
+gem file addition of devise
+bundle install
+rails g devise:install
+
+rails g devise:views
+rails g devise user
+rails db>migrate
+
+try signing up 
+change in initializers
+initializers>devise.rb>config.navigational_format = ["/",:html,:turbo_stream]
+
+my posts page 
+comment section addition
+rails g scaffold comment text:string user_id:string post_id:string
+associations addition
+adding profiles for users
+rails g controller users show
+
+
+active storage for profile pictures
+
+
+followability for following feature
+search filter
+gem ransack
+
+pagination
