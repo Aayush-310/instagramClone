@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+clone the application
+run
+bundle install
+on the terminal
 
-Things you may want to cover:
+then run the application
+rails s
+explore the application
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+it is a application similiar to instagram which has various features of it and can be considered a social media application
