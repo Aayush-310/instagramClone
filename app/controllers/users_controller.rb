@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user.accept_follow_request_of(current_user)
     redirect_to users_path(@user)
 
-  end
+  end    
   def unfollow
     current_user.unfollow(@user)
     redirect_to users_path(@user)
